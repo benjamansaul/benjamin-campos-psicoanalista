@@ -22,6 +22,7 @@
 
 
   <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js');</script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benjamín Campos | Psicoanalista en Rosario</title>
@@ -97,6 +98,7 @@
       --white: #ffffff;
       --border: rgba(28,42,58,0.1);
       --section-gap: 80px;
+      --paper: #fbf8f2;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -716,6 +718,202 @@
     footer a { color: var(--gold); text-decoration: none; }
 
     /* ── RESPONSIVE ── */
+    /* ── FONDOS ALTERNADOS Y DETALLES ── */
+    .section-alt { background: var(--paper); }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    /* ── FRANJA DE CONFIANZA ── */
+    .trust-strip {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 24px;
+      padding: 0;
+    }
+
+    .trust-strip li {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      background: var(--white);
+      border: 1px solid var(--gold-light);
+      padding: 5px 12px;
+      border-radius: 999px;
+      line-height: 1.5;
+    }
+
+    .trust-strip a { color: inherit; text-decoration: none; }
+    .trust-strip a:hover { color: var(--gold); }
+    .trust-strip .rating-stars { font-size: 0.72rem; }
+
+    /* ── CÓMO EMPEZAR ── */
+    .pasos {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 8px 0 28px;
+      padding: 0;
+    }
+
+    .paso {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold);
+      padding: 26px 24px;
+    }
+
+    .paso-num {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .paso h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .paso p { font-size: 0.92rem; margin: 0; }
+
+    .pasos-cta { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .pasos-nota { font-size: 0.85rem; color: var(--ink-muted); }
+
+    /* ── TRAYECTORIA ── */
+    .timeline {
+      list-style: none;
+      position: relative;
+      margin: 28px 0 0;
+      padding: 0 0 0 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--gold-light);
+    }
+
+    .timeline li { position: relative; padding-bottom: 22px; }
+    .timeline li:last-child { padding-bottom: 0; }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 6px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--parchment);
+      border: 1.5px solid var(--gold);
+    }
+
+    .tl-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .timeline p { font-size: 0.95rem; margin: 0; }
+    .timeline a { color: var(--gold); }
+
+    /* ── MOTIVOS DE CONSULTA ── */
+    .motivos {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 24px 0 0;
+      padding: 0;
+    }
+
+    .motivos li {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--gold-light);
+      padding: 12px 14px;
+    }
+
+    .motivos strong { font-weight: 500; font-size: 0.92rem; color: var(--ink); }
+    .motivos span { font-size: 0.84rem; line-height: 1.5; color: var(--ink-muted); }
+
+    /* ── FOTOS DEL CONSULTORIO ── */
+    .orientacion-aside { display: flex; flex-direction: column; gap: 20px; }
+
+    .foto-consultorio img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      filter: grayscale(10%);
+    }
+
+    .foto-consultorio figcaption {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+    }
+
+    .consultorio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .consultorio-grid img {
+      display: block;
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      filter: grayscale(10%);
+    }
+
+    .consultorio-grid .consultorio-info {
+      margin-top: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    /* ── APARICIÓN SUAVE AL BAJAR ── */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .js .reveal.visible { opacity: 1; transform: none; }
+
+    @media print { .js .reveal { opacity: 1; transform: none; } }
+
     @media (max-width: 680px) {
       .hero {
         flex-direction: column-reverse;
@@ -737,8 +935,8 @@
       .hero-lead { order: 2; }
       .hero-subtitle { order: 3; margin-bottom: 20px; }
       .hero-actions { order: 4; margin-bottom: 24px; }
-      .hero-body { order: 5; }
-      .rating-badge { order: 6; align-self: flex-start; }
+      .hero-body { order: 6; }
+      .trust-strip { order: 5; }
       .hero-testimonio { order: 7; margin-top: 4px; }
 
       .about-grid,
@@ -759,8 +957,20 @@
       .nav-brand { font-size: 0.86rem; letter-spacing: 0; }
     }
 
+    @media (max-width: 680px) {
+      .pasos,
+      .consultorio-grid { grid-template-columns: 1fr; }
+      .consultorio-grid img { height: 280px; }
+      .paso { padding: 22px 20px; }
+    }
+
+    @media (max-width: 400px) {
+      .motivos { grid-template-columns: 1fr; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -805,17 +1015,19 @@
         <div class="hero-eyebrow">Psicoanálisis · Rosario, Argentina</div>
         <h1>Psicoanalista<br>en <em>Rosario</em></h1>
         <p class="hero-lead">Un espacio donde la palabra puede circular.</p>
-        <p class="hero-subtitle">Benjamín Campos · Mat. 9449 · Presencial y virtual</p>
+        <p class="hero-subtitle">Benjamín Campos · Psicoanalista</p>
         <p class="hero-body">Atención presencial en Rosario y virtual para quienes estén en cualquier parte del mundo. Trabajo con niños, adolescentes y adultos desde una orientación psicoanalítica.</p>
 
-        <a href="https://www.google.com/maps/place/?q=place_id:ChIJPSCBhJWrt5UR76SrfI0vXv0" target="_blank" rel="noopener" class="rating-badge">
-          <span class="rating-stars">★★★★★</span>
-          <span><strong>10 reseñas</strong> en Google · 5 estrellas</span>
-        </a>
+        <ul class="trust-strip" aria-label="Datos profesionales">
+          <li>Mat. 9449</li>
+          <li>Egresado UNR</li>
+          <li><a href="https://www.google.com/maps/place/?q=place_id:ChIJPSCBhJWrt5UR76SrfI0vXv0" target="_blank" rel="noopener"><span class="rating-stars">★★★★★</span> 5,0 en Google · 10 reseñas</a></li>
+          <li>Centro de Rosario y virtual</li>
+        </ul>
 
         <div class="hero-actions">
-          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Escribir por WhatsApp</a>
-          <a href="#orientacion" class="btn-outline">Conocer el enfoque</a>
+          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Pedir primera entrevista por WhatsApp</a>
+          <a href="#como-empezar" class="btn-outline">Cómo empezar</a>
         </div>
 
         <div class="hero-testimonio">
@@ -838,6 +1050,35 @@
     <div class="line"></div>
   </div>
 
+  <!-- CÓMO EMPEZAR -->
+  <section id="como-empezar" class="section-alt">
+    <div class="container">
+      <div class="section-label">Cómo empezar</div>
+      <h2>Tres pasos, <em>sin compromiso</em></h2>
+      <ol class="pasos">
+        <li class="paso reveal">
+          <span class="paso-num">1</span>
+          <h3>Me escribís por WhatsApp</h3>
+          <p>Con un mensaje breve alcanza. No hace falta que sepas explicar bien qué te pasa.</p>
+        </li>
+        <li class="paso reveal">
+          <span class="paso-num">2</span>
+          <h3>Primera entrevista</h3>
+          <p>Coordinamos un encuentro, presencial en el centro de Rosario o por videollamada, para que me cuentes lo que te trae.</p>
+        </li>
+        <li class="paso reveal">
+          <span class="paso-num">3</span>
+          <h3>Acordamos el encuadre</h3>
+          <p>Si los dos queremos seguir, definimos frecuencia, horario y honorarios.</p>
+        </li>
+      </ol>
+      <div class="pasos-cta">
+        <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Pedir primera entrevista por WhatsApp</a>
+        <span class="pasos-nota">Martes a jueves de 13 a 20 h · Viernes de 8 a 13 h</span>
+      </div>
+    </div>
+  </section>
+
   <!-- SOBRE MÍ -->
   <section id="sobre-mi">
     <div class="container">
@@ -845,26 +1086,36 @@
       <h2>Recorrido <em>profesional</em></h2>
       <p>Psicoanalista egresado de la Universidad Nacional de Rosario con un promedio de 9,12, donde también me desempeñé como ayudante en la cátedra de Clínica 1, de orientación psicoanalítica. Cuento con formación de posgrado en clínica con niños y adolescentes, y trayectoria en instituciones escolares y centros educativos terapéuticos, especialmente en el acompañamiento de personas con discapacidad.</p>
       <p>A los 17 años viajé solo desde Catriel, Río Negro, a Rosario para estudiar. Entiendo lo que cuesta construir desde cero en una ciudad nueva, sin la red de siempre cerca.</p>
-      <div class="about-grid">
-        <div class="about-fact">
-          <div class="label">Universidad</div>
-          <p>Universidad Nacional de Rosario · Promedio 9,12</p>
-        </div>
-        <div class="about-fact">
-          <div class="label">Matrícula</div>
+      <ol class="timeline">
+        <li class="reveal">
+          <div class="tl-label">Formación de grado</div>
+          <p>Licenciatura en Psicología · Universidad Nacional de Rosario · Promedio 9,12</p>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Matrícula</div>
           <p>N.º 9449 · Colegio de Psicólogos de Santa Fe</p>
-        </div>
-        <div class="about-fact">
-          <div class="label">Docencia</div>
-          <p>Ayudante de cátedra en Clínica 1 — orientación psicoanalítica</p>
-        </div>
-        <div class="about-fact">
-          <div class="label">Posgrado</div>
-          <p>Formación en clínica con niños y adolescentes</p>
-          <p>Participación en grupos de estudio en Segunda Tópica Salud Mental</p>
-          <p>Participación en el seminario anual "El psicoanálisis hoy: Lo anacronico-lo contemporaneo" dictado por Nicolas Vallejo</p>
-        </div>
-      </div>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Docencia</div>
+          <p>Ayudante de cátedra en Clínica 1, de orientación psicoanalítica</p>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Instituciones</div>
+          <p>Dos años en un Centro Educativo Terapéutico · SAIE Fort-Da, desde 2025</p>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Práctica clínica</div>
+          <p>Consultorio particular desde 2024 · Presencial en Rosario y virtual</p>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Formación continua</div>
+          <p>Posgrado en clínica con niños y adolescentes · Grupos de estudio en Segunda Tópica Salud Mental · Seminario anual "El psicoanálisis hoy: lo anacrónico, lo contemporáneo", dictado por Nicolás Vallejo</p>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Escritura</div>
+          <p>Publicaciones sobre cine y psicoanálisis, 2025 y 2026 · <a href="#publicaciones">Ver escritos</a></p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -878,27 +1129,36 @@
           <p>Mi práctica se orienta exclusivamente desde el psicoanálisis: un espacio de escucha singular donde la palabra puede circular sin prisa y sin fórmulas. No se trata de aplicar técnicas ni de dar consejos, sino de abrir un lugar para que cada persona pueda construir su propia respuesta frente a lo que le genera sufrimiento.</p>
           <p>Si estás buscando herramientas, técnicas o un enfoque cognitivo-conductual, con gusto te oriento hacia un colega que se ajuste mejor a lo que necesitás. Lo que ofrezco es otra cosa: tiempo y escucha.</p>
           <p style="font-size:0.9rem;">Trabajo principalmente con la clínica de la neurosis en adultos y adolescentes.</p>
-          <div class="topics">
-            <span class="pill">Duelos</span>
-            <span class="pill">Ansiedad</span>
-            <span class="pill">Ataques de pánico</span>
-            <span class="pill">Baja autoestima</span>
-            <span class="pill">Procrastinación</span>
-            <span class="pill">Estrés laboral</span>
-            <span class="pill">Conflictos vinculares</span>
-            <span class="pill">Pérdida de sentido vital</span>
-          </div>
+          <ul class="motivos">
+            <li class="reveal"><strong>Duelos</strong><span>Pérdidas de personas, vínculos o proyectos que cuesta atravesar.</span></li>
+            <li class="reveal"><strong>Ansiedad</strong><span>Preocupación constante, tensión, dificultad para frenar.</span></li>
+            <li class="reveal"><strong>Ataques de pánico</strong><span>Episodios de miedo intenso que aparecen sin aviso.</span></li>
+            <li class="reveal"><strong>Baja autoestima</strong><span>Una mirada sobre uno mismo que pesa y limita.</span></li>
+            <li class="reveal"><strong>Procrastinación</strong><span>Postergar lo importante aunque se quiera hacerlo.</span></li>
+            <li class="reveal"><strong>Estrés laboral</strong><span>Cuando el trabajo ocupa todo y desgasta.</span></li>
+            <li class="reveal"><strong>Conflictos vinculares</strong><span>Tensiones que se repiten con pareja, familia o amigos.</span></li>
+            <li class="reveal"><strong>Pérdida de sentido</strong><span>La sensación de que nada termina de tener sentido.</span></li>
+          </ul>
         </div>
+        <div class="orientacion-aside">
+        <figure class="foto-consultorio reveal">
+          <picture>
+            <source srcset="imagenes/consultorio1.webp" type="image/webp">
+            <img src="imagenes/consultorio1.jpg" alt="Consultorio de psicoanálisis en el centro de Rosario" width="800" height="1000" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>El consultorio, en Córdoba 844</figcaption>
+        </figure>
         <div class="no-juicio">
           <div class="quote">"Un espacio sin juicio moral, donde lo que te pesa puede empezar a tener otra forma."</div>
           <p>Lo que más suelen valorar quienes consultan es que las sesiones no se parecen a una evaluación ni a un consejo. Lo que traés se escucha como es, sin que nadie te diga qué deberías haber hecho.</p>
+        </div>
         </div>
       </div>
     </div>
   </section>
   
 <!-- HONORARIOS -->
-<section id="honorarios">
+<section id="honorarios" class="section-alt">
   <div class="container">
     <div class="section-label">Honorarios</div>
     <h2>El valor de <em>cada sesión</em></h2>
@@ -950,33 +1210,34 @@
   </section>
 
   <!-- CONSULTORIO -->
-  <section id="consultorio">
+  <section id="consultorio" class="section-alt">
     <div class="container">
       <div class="section-label">El espacio</div>
       <h2>Consultorio en el <em>centro de Rosario</em></h2>
       <p>Un espacio privado y tranquilo pensado para cuidar la confidencialidad y el encuadre de cada sesión, ubicado en el centro de Rosario. También ofrezco atención virtual para quienes prefieran esa modalidad o se encuentren en otra ciudad o en el exterior.</p>
-      <div class="gallery">
-        <picture>
-          <source srcset="imagenes/consultorio1.webp" type="image/webp">
-          <img src="imagenes/consultorio1.jpg" alt="Consultorio de psicoanálisis en el centro de Rosario, Santa Fe" width="800" height="1000" loading="lazy" decoding="async">
-        </picture>
-        <picture>
+      <div class="consultorio-grid">
+        <picture class="reveal">
           <source srcset="imagenes/consultorio2.webp" type="image/webp">
-          <img src="imagenes/consultorio2.jpg" alt="Espacio de consulta psicoanalítica en Córdoba 844, Rosario" width="800" height="1000" loading="lazy" decoding="async">
+          <img src="imagenes/consultorio2.jpg" alt="Entrada al consultorio en Córdoba 844, Rosario" width="800" height="1000" loading="lazy" decoding="async">
         </picture>
-      </div>
-      <div class="consultorio-info">
-        <div class="info-item">
-          <div class="info-label">Dirección</div>
-          <p>Córdoba 844, Rosario, Santa Fe</p>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Modalidad</div>
-          <p>Presencial y virtual</p>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Honorarios</div>
-          <p>$35.000 a $50.000 por sesión</p>
+        <div class="consultorio-info">
+          <div class="info-item">
+            <div class="info-label">Dirección</div>
+            <p>Córdoba 844, Rosario, Santa Fe</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Horarios</div>
+            <p>Martes a jueves de 13 a 20 h<br>Viernes de 8 a 13 h</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Modalidad</div>
+            <p>Presencial y virtual</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Honorarios</div>
+            <p>$35.000 a $50.000 por sesión</p>
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=C%C3%B3rdoba+844%2C+Rosario%2C+Santa+Fe&amp;destination_place_id=ChIJPSCBhJWrt5UR76SrfI0vXv0" target="_blank" rel="noopener" class="btn-outline">Cómo llegar</a>
         </div>
       </div>
     </div>
@@ -1041,7 +1302,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="section-alt">
     <div class="container">
       <div class="section-label">Preguntas frecuentes</div>
       <h2>Lo que suelen <em>preguntarme</em></h2>
@@ -1114,7 +1375,11 @@
           </div>
           <div class="contact-item">
             <div class="c-label">Dirección</div>
-            <p>Córdoba 844, Rosario, Santa Fe</p>
+            <p>Córdoba 844, Rosario, Santa Fe · <a href="https://www.google.com/maps/dir/?api=1&amp;destination=C%C3%B3rdoba+844%2C+Rosario%2C+Santa+Fe&amp;destination_place_id=ChIJPSCBhJWrt5UR76SrfI0vXv0" target="_blank" rel="noopener">Cómo llegar</a></p>
+          </div>
+          <div class="contact-item">
+            <div class="c-label">Horarios</div>
+            <p>Martes a jueves de 13 a 20 h · Viernes de 8 a 13 h</p>
           </div>
           <div class="contact-item">
             <div class="c-label">Modalidad</div>
@@ -1129,7 +1394,7 @@
         </div>
         <div class="contacto-cta">
           <p>Si estás pensando en empezar un proceso, escribime y coordinamos. No hay compromiso en la primera consulta.</p>
-          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Escribir por WhatsApp</a>
+          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Pedir primera entrevista por WhatsApp</a>
           <!-- Mundopsicólogos oculto (perfil dado de baja). Para reactivarlo, quitar este comentario.
           <a href="https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social" target="_blank" class="btn-outline">Ver perfil en Mundopsicólogos</a>
           -->
@@ -1141,6 +1406,21 @@
   <footer>
     <p>© Benjamín Campos · Psicoanalista · Mat. 9449 · Rosario, Santa Fe · <a href="https://wa.me/5492994286870">+54 9 299 428-6870</a></p>
   </footer>
+
+  <!-- Aparición suave al bajar -->
+  <script>
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    function mostrarTodo() { items.forEach(function (el) { el.classList.add('visible'); }); }
+    if (!('IntersectionObserver' in window)) { mostrarTodo(); return; }
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { obs.observe(el); });
+  })();
+  </script>
 
   <!-- Menú desplegable -->
   <script>
