@@ -54,21 +54,21 @@ function gtag_report_conversion(url) {
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Benjamín Campos | Psicoanalista en Rosario">
   <meta name="twitter:description" content="Atención psicoanalítica presencial en Rosario y virtual para todo el mundo.">
-  <meta name="twitter:image" content="https://benjamincampos.com.ar/imagenes/foto-perfil.jpg">
+  <meta name="twitter:image" content="https://benjamin-campos-psicoanalista.vercel.app/imagenes/foto-perfil.jpg">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://benjamin-campos-psicoanalista.vercel.app/">
 
-  <!-- Schema.org LocalBusiness / Physician -->
+  <!-- Schema.org MedicalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Physician",
+    "@type": "MedicalBusiness",
     "name": "Benjamín Campos",
     "description": "Psicoanalista en Rosario. Atención presencial y virtual para adultos, adolescentes y niños. Orientación psicoanalítica. Matrícula 9449.",
     "url": "https://benjamin-campos-psicoanalista.vercel.app",
     "telephone": "+54-9-299-428-6870",
-    "image": "https://benjamincampos.com.ar/imagenes/foto-perfil.jpg",
+    "image": "https://benjamin-campos-psicoanalista.vercel.app/imagenes/foto-perfil.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Córdoba 844",
@@ -83,13 +83,8 @@ function gtag_report_conversion(url) {
     },
     "openingHours": "Mo-Fr 09:00-21:00",
     "priceRange": "$$",
-    "hasMap": "https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": "10",
-      "bestRating": "5"
-    },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba+844,+Rosario,+Santa+Fe",
+    "sameAs": ["https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social"],
     "review": {
       "@type": "Review",
       "reviewRating": {
@@ -99,12 +94,7 @@ function gtag_report_conversion(url) {
       "author": { "@type": "Person", "name": "Florencia" },
       "reviewBody": "Me siento muy cómoda en las sesiones con Benjamín. Su forma de escuchar y acompañar genera un espacio seguro donde puedo expresarme libremente."
     },
-    "medicalSpecialty": "Psychiatry",
-    "availableService": [
-      { "@type": "MedicalTherapy", "name": "Psicoanálisis" },
-      { "@type": "MedicalTherapy", "name": "Atención virtual" },
-      { "@type": "MedicalTherapy", "name": "Clínica con niños y adolescentes" }
-    ]
+    "knowsAbout": ["Psicoanálisis", "Atención virtual", "Clínica con adultos", "Clínica con niños y adolescentes"]
   }
   </script>
 
@@ -285,6 +275,8 @@ function gtag_report_conversion(url) {
     .btn-outline:hover { background: var(--ink); color: var(--white); }
 
     .hero-photo { flex-shrink: 0; }
+
+    picture { display: block; }
 
     .hero-photo img {
       width: 280px;
@@ -725,9 +717,9 @@ function gtag_report_conversion(url) {
         <li><a href="#sobre-mi">Formación</a></li>
         <li><a href="#orientacion">Orientación</a></li>
         <li><a href="#honorarios">Honorarios</a></li>
-        <li><a href="#ninos-adolescentes">Niños y adolescentes</a></li>
         <li><a href="#exterior">Exterior</a></li>
         <li><a href="#consultorio">Consultorio</a></li>
+        <li><a href="#ninos-adolescentes">Niños y adolescentes</a></li>
         <li><a href="#faq">Preguntas</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -759,7 +751,10 @@ function gtag_report_conversion(url) {
         </div>
       </div>
       <div class="hero-photo">
-        <img src="imagenes/foto-perfil.jpg" alt="Benjamín Campos, Psicoanalista en Rosario, Santa Fe">
+        <picture>
+          <source srcset="imagenes/foto-perfil.webp" type="image/webp">
+          <img src="imagenes/foto-perfil.jpg" alt="Benjamín Campos, Psicoanalista en Rosario, Santa Fe" width="280" height="340" fetchpriority="high">
+        </picture>
       </div>
     </header>
   </div>
@@ -848,33 +843,6 @@ function gtag_report_conversion(url) {
   </div>
 </section>
   
-  <!-- NIÑOS Y ADOLESCENTES -->
-<section id="ninos-adolescentes">
-  <div class="container">
-    <div class="section-label">Clínica con niños y adolescentes</div>
-    <h2>Un espacio pensado para <em>cada etapa</em></h2>
-    <div class="orientacion-body">
-      <div>
-        <p>Trabajo con niños y adolescentes desde el inicio de mi práctica clínica, con formación de posgrado específica en esta área y dos años de desempeño en un Centro Educativo Terapéutico dedicado a esta población. Eso me permite abordar de forma cuidada las problemáticas propias de cada etapa, considerando sus particularidades subjetivas y contextuales.</p>
-        <p>En niños, los motivos de consulta más frecuentes refieren a problemas de conducta, dificultades en el rendimiento escolar y conflictos vinculares. En adolescentes, aparecen principalmente la angustia, los vínculos con pares y familia, y la pérdida de motivación.</p>
-        <p style="font-size:0.9rem;">La primera entrevista suele realizarse con los padres o adultos responsables, para conocer la situación y pensar juntos si el espacio analítico puede ser útil para su hijo.</p>
-        <div class="topics" style="margin-top:20px;">
-          <span class="pill">Problemas de conducta</span>
-          <span class="pill">Angustia</span>
-          <span class="pill">Rendimiento escolar</span>
-          <span class="pill">Vínculos con pares</span>
-          <span class="pill">Conflictos familiares</span>
-          <span class="pill">Pérdida de motivación</span>
-        </div>
-      </div>
-      <div class="no-juicio">
-        <div class="quote">"Cada consulta por un hijo es pensada como un espacio singular, donde es posible escuchar lo que genera sufrimiento y comenzar a darle otra forma."</div>
-        <p>Atiendo de forma presencial en Rosario y en algunos casos también de forma virtual, según las posibilidades de cada familia.</p>
-      </div>
-    </div>
-  </div>
-</section>
-  
   <!-- EXTERIOR -->
   <section id="exterior">
     <div class="container">
@@ -915,8 +883,14 @@ function gtag_report_conversion(url) {
       <h2>Consultorio en el <em>centro de Rosario</em></h2>
       <p>Un espacio privado y tranquilo pensado para cuidar la confidencialidad y el encuadre de cada sesión, ubicado en el centro de Rosario. También ofrezco atención virtual para quienes prefieran esa modalidad o se encuentren en otra ciudad o en el exterior.</p>
       <div class="gallery">
-        <img src="imagenes/consultorio1.jpg" alt="Consultorio de psicoanálisis en el centro de Rosario, Santa Fe">
-        <img src="imagenes/consultorio2.jpg" alt="Espacio de consulta psicoanalítica en Córdoba 844, Rosario">
+        <picture>
+          <source srcset="imagenes/consultorio1.webp" type="image/webp">
+          <img src="imagenes/consultorio1.jpg" alt="Consultorio de psicoanálisis en el centro de Rosario, Santa Fe" width="800" height="1000" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source srcset="imagenes/consultorio2.webp" type="image/webp">
+          <img src="imagenes/consultorio2.jpg" alt="Espacio de consulta psicoanalítica en Córdoba 844, Rosario" width="800" height="1000" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="consultorio-info">
         <div class="info-item">
@@ -935,6 +909,33 @@ function gtag_report_conversion(url) {
     </div>
   </section>
 
+  <!-- NIÑOS Y ADOLESCENTES -->
+<section id="ninos-adolescentes">
+  <div class="container">
+    <div class="section-label">Clínica con niños y adolescentes</div>
+    <h2>Un espacio pensado para <em>cada etapa</em></h2>
+    <div class="orientacion-body">
+      <div>
+        <p>Trabajo con niños y adolescentes desde el inicio de mi práctica clínica, con formación de posgrado específica en esta área y dos años de desempeño en un Centro Educativo Terapéutico dedicado a esta población. Eso me permite abordar de forma cuidada las problemáticas propias de cada etapa, considerando sus particularidades subjetivas y contextuales.</p>
+        <p>En niños, los motivos de consulta más frecuentes refieren a problemas de conducta, dificultades en el rendimiento escolar y conflictos vinculares. En adolescentes, aparecen principalmente la angustia, los vínculos con pares y familia, y la pérdida de motivación.</p>
+        <p style="font-size:0.9rem;">La primera entrevista suele realizarse con los padres o adultos responsables, para conocer la situación y pensar juntos si el espacio analítico puede ser útil para su hijo.</p>
+        <div class="topics" style="margin-top:20px;">
+          <span class="pill">Problemas de conducta</span>
+          <span class="pill">Angustia</span>
+          <span class="pill">Rendimiento escolar</span>
+          <span class="pill">Vínculos con pares</span>
+          <span class="pill">Conflictos familiares</span>
+          <span class="pill">Pérdida de motivación</span>
+        </div>
+      </div>
+      <div class="no-juicio">
+        <div class="quote">"Cada consulta por un hijo es pensada como un espacio singular, donde es posible escuchar lo que genera sufrimiento y comenzar a darle otra forma."</div>
+        <p>Atiendo de forma presencial en Rosario y en algunos casos también de forma virtual, según las posibilidades de cada familia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
   <!-- PUBLICACIONES -->
   <section id="publicaciones">
     <div class="container">
