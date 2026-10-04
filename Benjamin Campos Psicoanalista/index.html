@@ -68,7 +68,6 @@
     "openingHours": ["Tu-Th 13:00-20:00", "Fr 08:00-13:00"],
     "priceRange": "$$",
     "hasMap": "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba+844,+Rosario,+Santa+Fe",
-    "sameAs": ["https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social"],
     "review": {
       "@type": "Review",
       "reviewRating": {
@@ -143,7 +142,66 @@
 
     .nav-brand span { color: var(--gold); font-style: italic; }
 
-    nav ul { display: flex; gap: 28px; list-style: none; }
+    .nav-inner { position: relative; }
+
+    nav ul { display: flex; gap: 22px; list-style: none; }
+
+    nav ul a { white-space: nowrap; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      padding: 8px 4px;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* En pantallas anchas el encabezado usa más ancho para que entren las 8 secciones en una línea */
+    @media (min-width: 1400px) {
+      .nav-inner { max-width: 1360px; }
+    }
+
+    /* Por debajo de 1400px el menú no entra en una línea: se despliega con un botón */
+    @media (max-width: 1399px) {
+      .nav-toggle { display: flex; }
+
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--parchment);
+        border-bottom: 1px solid var(--border);
+        padding: 8px 24px 16px;
+      }
+
+      nav ul.open { display: flex; }
+
+      nav ul a {
+        display: block;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav ul li:last-child a { border-bottom: 0; }
+    }
 
     nav a {
       font-size: 0.82rem;
@@ -690,9 +748,15 @@
       .contacto-grid { grid-template-columns: 1fr; }
 
       .pub-item { grid-template-columns: 1fr; gap: 6px; }
-      nav ul { display: none; }
-      .nav-inner { justify-content: space-between; }
       .wa-float { bottom: 20px; right: 20px; }
+      .nav-inner { padding: 12px 16px; }
+      .nav-brand { font-size: 1rem; }
+      nav ul { padding: 8px 16px 16px; }
+      .nav-inner { gap: 12px; }
+    }
+
+    @media (max-width: 400px) {
+      .nav-brand { font-size: 0.86rem; letter-spacing: 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -718,7 +782,10 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-brand">Benjamín Campos · <span>Psicoanalista</span></a>
-      <ul>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu">
         <li><a href="#sobre-mi">Formación</a></li>
         <li><a href="#orientacion">Orientación</a></li>
         <li><a href="#honorarios">Honorarios</a></li>
@@ -1053,15 +1120,19 @@
             <div class="c-label">Modalidad</div>
             <p>Presencial en Rosario · Virtual a todo el mundo</p>
           </div>
+          <!-- Mundopsicólogos oculto (perfil dado de baja). Para reactivarlo, quitar este comentario.
           <div class="contact-item">
             <div class="c-label">Perfil profesional</div>
             <p><a href="https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social" target="_blank">Mundopsicólogos</a></p>
           </div>
+          -->
         </div>
         <div class="contacto-cta">
           <p>Si estás pensando en empezar un proceso, escribime y coordinamos. No hay compromiso en la primera consulta.</p>
           <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Escribir por WhatsApp</a>
+          <!-- Mundopsicólogos oculto (perfil dado de baja). Para reactivarlo, quitar este comentario.
           <a href="https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social" target="_blank" class="btn-outline">Ver perfil en Mundopsicólogos</a>
+          -->
         </div>
       </div>
     </div>
@@ -1070,6 +1141,22 @@
   <footer>
     <p>© Benjamín Campos · Psicoanalista · Mat. 9449 · Rosario, Santa Fe · <a href="https://wa.me/5492994286870">+54 9 299 428-6870</a></p>
   </footer>
+
+  <!-- Menú desplegable -->
+  <script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('nav-menu');
+    if (!btn || !menu) return;
+    function cerrar() { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Abrir menú'); }
+    btn.addEventListener('click', function () {
+      var abierto = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', cerrar); });
+  })();
+  </script>
 
   <!-- Origen de la visita: si viene de Google Ads, el mensaje de WhatsApp lo indica -->
   <script>
