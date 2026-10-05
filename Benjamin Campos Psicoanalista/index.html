@@ -1438,22 +1438,79 @@
   })();
   </script>
 
-  <!-- Origen de la visita: si viene de Google Ads, el mensaje de WhatsApp lo indica -->
+  <!-- Origen de la visita: agrega un código corto al mensaje de WhatsApp (ej. "ref. G1")
+       para saber de qué canal / palabra clave / anuncio llegó cada contacto.
+       Tabla de códigos:
+         G1 [psicoanalista rosario] exacta      G2 "psicoanalista rosario" frase
+         G3 psicoanalista virtual               G4 psicoanalista adultos
+         G5 psicoanalista infantil              G6 psicoanalista adolescentes
+         G7 psicoanalista hombre                G8 psicoanalista hombre virtual
+         G9 psicoanalista hombre rosario        G0 Google Ads, otra palabra clave o sin dato
+         P  Perfil de Empresa de Google (link con ?utm_source=gbp)
+         O  Google orgánico     F  Facebook     I  Instagram     Q  Flyer / QR (?utm_source=flyer)
+         X  Otro sitio web      D  Directo (escribió la dirección o sin dato)
+       Después del guion van los 3 últimos dígitos del ID del anuncio de Google Ads (ej. G1-482).
+       El código se recuerda 30 días; un clic nuevo en un anuncio lo reemplaza. -->
   <script>
   (function () {
-    var params = new URLSearchParams(window.location.search);
-    var desdeGoogle = params.has('gclid') || params.has('gbraid') || params.has('wbraid') ||
-                      (params.get('utm_source') || '').toLowerCase() === 'google';
+    var CLAVE = 'origen_ref', DIAS = 30;
+    var KW = {
+      'psicoanalista rosario|e': 'G1', 'psicoanalista rosario|p': 'G2',
+      'psicoanalista virtual': 'G3', 'psicoanalista adultos': 'G4',
+      'psicoanalista infantil': 'G5', 'psicoanalista adolescentes': 'G6',
+      'psicoanalista hombre': 'G7', 'psicoanalista hombre virtual': 'G8',
+      'psicoanalista hombre rosario': 'G9'
+    };
+    var FUENTES = { gbp: 'P', facebook: 'F', fb: 'F', instagram: 'I', ig: 'I', flyer: 'Q', qr: 'Q' };
+
+    function limpiar(s) {
+      return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[\[\]"+]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function detectar() {
+      var p = new URLSearchParams(window.location.search);
+      var fuente = (p.get('utm_source') || '').toLowerCase();
+      var esAds = p.has('gclid') || p.has('gbraid') || p.has('wbraid') ||
+                  (fuente === 'google' && (p.get('utm_medium') || '').toLowerCase() === 'cpc');
+      if (esAds) {
+        var kw = limpiar(p.get('utm_term')), mt = (p.get('mt') || '').toLowerCase().charAt(0);
+        var cod = KW[kw + '|' + mt] || KW[kw] || 'G0';
+        var anuncio = (p.get('utm_content') || '').replace(/\D/g, '').slice(-3);
+        return { cod: anuncio ? cod + '-' + anuncio : cod, ads: true };
+      }
+      if (FUENTES[fuente]) return { cod: FUENTES[fuente], ads: false };
+      var ref = '';
+      try { ref = new URL(document.referrer).hostname; } catch (e) {}
+      if (ref && ref !== window.location.hostname) {
+        if (/(^|\.)google\./.test(ref)) return { cod: 'O', ads: false };
+        if (/facebook\.com$|fb\.com$|messenger\.com$/.test(ref)) return { cod: 'F', ads: false };
+        if (/instagram\.com$/.test(ref)) return { cod: 'I', ads: false };
+        return { cod: 'X', ads: false };
+      }
+      return null; // visita directa o navegación interna: no pisa un origen anterior
+    }
+
+    var actual = detectar(), guardado = null;
     try {
-      if (desdeGoogle) sessionStorage.setItem('origen_google', '1');
-      else desdeGoogle = sessionStorage.getItem('origen_google') === '1';
-    } catch (e) {}
-    if (!desdeGoogle) return;
+      guardado = JSON.parse(localStorage.getItem(CLAVE) || 'null');
+      if (guardado && Date.now() - guardado.t > DIAS * 864e5) guardado = null;
+      // Un anuncio siempre reemplaza; otro origen solo si no había uno de Ads guardado
+      if (actual && (actual.ads || !guardado || !guardado.ads)) {
+        guardado = { cod: actual.cod, ads: actual.ads, t: Date.now() };
+        localStorage.setItem(CLAVE, JSON.stringify(guardado));
+      }
+    } catch (e) { guardado = actual; }
+    var codigo = (guardado && guardado.cod) || 'D';
+
+    var TEXTO_BASE = 'Hola Benjamín, quisiera consultar por disponibilidad de turnos';
     document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
       var url = new URL(a.href);
-      var texto = url.searchParams.get('text') || 'Hola Benjamín, quisiera consultar por disponibilidad de turnos';
-      a.href = url.origin + url.pathname + '?text=' + encodeURIComponent(texto + ' (te encontré en Google)');
+      var texto = url.searchParams.get('text') || TEXTO_BASE;
+      a.href = url.origin + url.pathname + '?text=' + encodeURIComponent(texto + ' (ref. ' + codigo + ')');
     });
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'origen_ref', origen_ref: codigo });
   })();
   </script>
 
