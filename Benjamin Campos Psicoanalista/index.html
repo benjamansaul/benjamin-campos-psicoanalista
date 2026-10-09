@@ -1446,6 +1446,9 @@
          G5 psicoanalista infantil              G6 psicoanalista adolescentes
          G7 psicoanalista hombre                G8 psicoanalista hombre virtual
          G9 psicoanalista hombre rosario        G0 Google Ads, otra palabra clave o sin dato
+       Campaña "Psicoanalista amplia" (sufijo de URL final cmp=a, o concordancia amplia):
+         A1 psicoanalista rosario               A2 psicoanalista online
+         A3 clínica psicoanalítica              A0 amplia, otra palabra clave o sin dato
          P  Perfil de Empresa de Google (link con ?utm_source=gbp)
          O  Google orgánico     F  Facebook     I  Instagram     Q  Flyer / QR (?utm_source=flyer)
          X  Otro sitio web      D  Directo (escribió la dirección o sin dato)
@@ -1461,6 +1464,9 @@
       'psicoanalista hombre': 'G7', 'psicoanalista hombre virtual': 'G8',
       'psicoanalista hombre rosario': 'G9'
     };
+    var KW_AMPLIA = {
+      'psicoanalista rosario': 'A1', 'psicoanalista online': 'A2', 'clinica psicoanalitica': 'A3'
+    };
     var FUENTES = { gbp: 'P', facebook: 'F', fb: 'F', instagram: 'I', ig: 'I', flyer: 'Q', qr: 'Q' };
 
     function limpiar(s) {
@@ -1471,11 +1477,14 @@
     function detectar() {
       var p = new URLSearchParams(window.location.search);
       var fuente = (p.get('utm_source') || '').toLowerCase();
-      var esAds = p.has('gclid') || p.has('gbraid') || p.has('wbraid') ||
+      var esAds = p.has('gclid') || p.has('gbraid') || p.has('wbraid') || p.has('cmp') ||
                   (fuente === 'google' && (p.get('utm_medium') || '').toLowerCase() === 'cpc');
       if (esAds) {
         var kw = limpiar(p.get('utm_term')), mt = (p.get('mt') || '').toLowerCase().charAt(0);
-        var cod = KW[kw + '|' + mt] || KW[kw] || 'G0';
+        var cmp = (p.get('cmp') || '').toLowerCase();
+        // Campaña amplia: por sufijo cmp=a o, si falta, por concordancia amplia (mt=b)
+        var amplia = cmp === 'a' || (cmp !== 'v' && mt === 'b');
+        var cod = amplia ? (KW_AMPLIA[kw] || 'A0') : (KW[kw + '|' + mt] || KW[kw] || 'G0');
         var anuncio = (p.get('utm_content') || '').replace(/\D/g, '').slice(-3);
         return { cod: anuncio ? cod + '-' + anuncio : cod, ads: true };
       }
