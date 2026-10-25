@@ -78,6 +78,7 @@
       "author": { "@type": "Person", "name": "Florencia" },
       "reviewBody": "Me siento muy cómoda en las sesiones con Benjamín. Su forma de escuchar y acompañar genera un espacio seguro donde puedo expresarme libremente."
     },
+    "award": "Cuadro de honor de graduados de Psicología de la UNR 2024, revista Punto Biz",
     "knowsAbout": ["Psicoanálisis", "Atención virtual", "Clínica con adultos", "Clínica con niños y adolescentes"]
   }
   </script>
@@ -972,6 +973,191 @@
       html { scroll-behavior: auto; }
       .js .reveal { opacity: 1; transform: none; transition: none; }
     }
+    /* ═════════ REDISEÑO VISUAL · octubre 2026 ═════════
+       Idea central: el arco (umbral del consultorio) enmarca el retrato
+       y se repite en la puerta del consultorio. Todo lo demás, sobrio. */
+    :root {
+      --wrap: 1040px;
+      --gold-text: #86602f;   /* dorado con contraste suficiente para texto chico */
+      --ink-2: #26394d;
+      --sand: #ece2d0;
+      --radius: 6px;
+      --sombra: 0 1px 2px rgba(28,42,58,.06), 0 18px 40px -22px rgba(28,42,58,.35);
+    }
+
+    .container, .hero-rule { max-width: var(--wrap); }
+    @media (max-width: 1399px) { .nav-inner { max-width: var(--wrap); } }
+    section { padding: clamp(56px, 8vw, 96px) 0; }
+
+    /* Etiquetas: en minúscula, serif itálica, sin mayúsculas sostenidas */
+    .section-label, .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.12rem;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--gold-text);
+    }
+    .tl-label, .info-item .info-label, .contact-item .c-label, .ext-item .ext-label,
+    .about-fact .label, .pub-type {
+      text-transform: none;
+      letter-spacing: 0.01em;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gold-text);
+    }
+    nav a { text-transform: none; letter-spacing: 0.01em; font-size: 0.9rem; }
+    nav a:hover, .pub-link:hover { color: var(--burgundy); }
+
+    h2 { font-size: clamp(2.1rem, 4.2vw, 2.9rem); letter-spacing: -0.005em; }
+    p { max-width: 68ch; }
+
+    /* Foco visible para teclado */
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* ── Botones ── */
+    .btn-primary, .btn-outline, .btn-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      font-size: 0.92rem;
+      line-height: 1.3;
+    }
+    .btn-primary { padding: 14px 24px; box-shadow: 0 10px 22px -12px rgba(28,42,58,.7); }
+    .btn-primary:hover { background: var(--burgundy); }
+    .i-wa { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .btn-light {
+      border: 1.5px solid var(--parchment);
+      color: var(--parchment);
+      padding: 12px 24px;
+      text-decoration: none;
+      margin-top: 8px;
+      transition: background .2s, color .2s;
+    }
+    .btn-light:hover { background: var(--parchment); color: var(--burgundy); }
+
+    /* ── Hero ── */
+    .hero-band {
+      background:
+        radial-gradient(60% 70% at 82% 38%, var(--sand) 0, rgba(236,226,208,0) 70%),
+        var(--parchment);
+    }
+    .hero { max-width: none; padding: 72px 0 72px; gap: 80px; min-height: 86vh; }
+    .hero-text h1 { font-size: clamp(3.1rem, 7vw, 5.4rem); letter-spacing: -0.015em; line-height: 1.02; }
+    .hero-lead { font-size: clamp(1.45rem, 2.4vw, 1.75rem); margin-top: 14px; }
+    .trust-strip li { background: rgba(255,255,255,.7); }
+
+    .hero-photo { position: relative; padding: 0 22px 22px 0; }
+    .hero-photo::before {
+      content: '';
+      position: absolute;
+      top: 22px; left: 22px; right: 0; bottom: 0;
+      border: 1px solid var(--gold);
+      border-radius: 999px 999px var(--radius) var(--radius);
+      animation: arco 1.1s cubic-bezier(.2,.7,.2,1) .25s both;
+    }
+    .hero-photo img {
+      position: relative;
+      width: 330px;
+      height: 420px;
+      border-radius: 999px 999px var(--radius) var(--radius);
+      object-position: center 18%;
+      box-shadow: var(--sombra);
+      filter: grayscale(8%);
+    }
+    @keyframes arco {
+      from { opacity: 0; transform: translate(-22px, -22px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Bloques oscuros con comilla ── */
+    .no-juicio {
+      position: relative;
+      background: linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%);
+      border-radius: var(--radius);
+      padding: 40px 34px 34px;
+      box-shadow: var(--sombra);
+      border-top: 2px solid var(--gold);
+    }
+
+
+    /* ── Tarjetas, fotos y listas ── */
+    .paso { border-radius: var(--radius); border-top-width: 3px; }
+    .paso-num { font-size: 3rem; }
+    .motivos li { border-radius: 4px; }
+    .foto-consultorio img { border-radius: var(--radius); box-shadow: var(--sombra); }
+    /* La entrada al consultorio repite el arco del retrato */
+    .consultorio-grid img { border-radius: 999px 999px var(--radius) var(--radius); box-shadow: var(--sombra); height: 420px; }
+    .exterior-visual { border-radius: var(--radius); box-shadow: var(--sombra); }
+    .timeline li.destacado::before { background: var(--gold); }
+    .timeline li.destacado p { color: var(--ink); }
+    summary { font-size: 1.02rem; }
+    summary:hover { color: var(--burgundy); }
+
+    /* ── Charla ── */
+    .charla {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin: 36px 0 12px;
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .charla-fotos { display: grid; grid-template-columns: 3fr 2fr; gap: 10px; }
+    .charla-fotos img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .charla-fotos figure:first-child img { object-position: 62% 50%; }
+    .charla-fotos figure:last-child img { object-position: 90% 40%; }
+    .charla .pub-title { font-size: 1.5rem; margin: 6px 0 8px; }
+
+    /* ── Pie ── */
+    footer {
+      background: var(--ink);
+      color: rgba(245,240,232,.72);
+      border-top: 0;
+      padding: 40px 24px 96px;
+    }
+    footer a { color: var(--gold-light); }
+
+    @media (max-width: 880px) {
+      .charla { grid-template-columns: 1fr; gap: 22px; padding: 18px; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { padding: 36px 0 48px; gap: 22px; min-height: auto; }
+      .hero-photo { align-self: flex-start; padding: 0 12px 12px 0; }
+      .hero-photo::before { top: 12px; left: 12px; }
+      .hero-photo img {
+        width: 132px;
+        height: 166px;
+        object-position: center 15%;
+      }
+      @keyframes arco {
+        from { opacity: 0; transform: translate(-12px, -12px); }
+        to   { opacity: 1; transform: none; }
+      }
+      .consultorio-grid img { height: 340px; }
+      .no-juicio { padding: 30px 22px 26px; }
+      .charla-fotos img { height: 170px; }
+      .btn-primary { width: 100%; justify-content: center; padding: 14px 12px; font-size: 0.86rem; letter-spacing: 0.01em; gap: 8px; }
+      .hero-actions .btn-outline { width: 100%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-photo::before { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -981,11 +1167,14 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+  <!-- Ícono de WhatsApp (se define una vez y se reutiliza) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  </svg>
+
   <!-- WhatsApp flotante -->
   <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="wa-float" aria-label="Escribir por WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
   </a>
 
   <!-- NAV -->
@@ -1009,6 +1198,7 @@
   </nav>
 
   <!-- HERO -->
+  <div class="hero-band">
   <div class="container">
     <header class="hero">
       <div class="hero-text">
@@ -1026,7 +1216,7 @@
         </ul>
 
         <div class="hero-actions">
-          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Pedir primera entrevista por WhatsApp</a>
+          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary"><svg class="i-wa" aria-hidden="true"><use href="#i-wa"/></svg>Pedir primera entrevista por WhatsApp</a>
           <a href="#como-empezar" class="btn-outline">Cómo empezar</a>
         </div>
 
@@ -1042,6 +1232,7 @@
         </picture>
       </div>
     </header>
+  </div>
   </div>
 
   <div class="hero-rule">
@@ -1073,7 +1264,7 @@
         </li>
       </ol>
       <div class="pasos-cta">
-        <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Pedir primera entrevista por WhatsApp</a>
+        <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary"><svg class="i-wa" aria-hidden="true"><use href="#i-wa"/></svg>Pedir primera entrevista por WhatsApp</a>
         <span class="pasos-nota">Martes a jueves de 13 a 20 h · Viernes de 8 a 13 h</span>
       </div>
     </div>
@@ -1090,6 +1281,10 @@
         <li class="reveal">
           <div class="tl-label">Formación de grado</div>
           <p>Licenciatura en Psicología · Universidad Nacional de Rosario · Promedio 9,12</p>
+        </li>
+        <li class="reveal destacado">
+          <div class="tl-label">Distinción</div>
+          <p>Cuadro de honor de graduados de Psicología de la UNR 2024 · Revista Punto Biz</p>
         </li>
         <li class="reveal">
           <div class="tl-label">Matrícula</div>
@@ -1114,6 +1309,10 @@
         <li class="reveal">
           <div class="tl-label">Escritura</div>
           <p>Publicaciones sobre cine y psicoanálisis, 2025 y 2026 · <a href="#publicaciones">Ver escritos</a></p>
+        </li>
+        <li class="reveal">
+          <div class="tl-label">Charlas</div>
+          <p>Disertante en la Jornada del Día del Psicólogo, Universidad Abierta Interamericana (UAI), 2026 · <a href="#charla-uai">Ver charla</a></p>
         </li>
       </ol>
     </div>
@@ -1185,7 +1384,7 @@
         <div class="exterior-visual">
           <div class="ext-title">Terapia en español, con alguien que entiende lo que significa estar lejos.</div>
           <p>Viví esa experiencia desde los 17 años, cuando dejé Catriel para estudiar en Rosario. Sé lo que es llegar a un lugar nuevo sin tu red, reconstruir desde cero y no tener a mano a quien uno necesita.</p>
-          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20estoy%20en%20el%20exterior%20y%20quisiera%20consultar" target="_blank" style="display:inline-block;border:1.5px solid #f5f0e8;color:#f5f0e8;padding:12px 26px;border-radius:3px;text-decoration:none;font-size:0.88rem;font-weight:400;letter-spacing:0.04em;margin-top:8px;">Escribir por WhatsApp</a>
+          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20estoy%20en%20el%20exterior%20y%20quisiera%20consultar" target="_blank" class="btn-light"><svg class="i-wa" aria-hidden="true"><use href="#i-wa"/></svg>Escribir por WhatsApp</a>
         </div>
         <div class="exterior-detail">
           <div class="ext-item">
@@ -1273,9 +1472,32 @@
   <!-- PUBLICACIONES -->
   <section id="publicaciones">
     <div class="container">
-      <div class="section-label">Escritos y publicaciones</div>
+      <div class="section-label">Charlas y publicaciones</div>
       <h2>Clínica <em>y cultura</em></h2>
       <p>Parte de mi práctica se extiende hacia la escritura y el pensamiento sobre cine y psicoanálisis, un cruce que orienta también mi mirada clínica.</p>
+
+      <article class="charla reveal" id="charla-uai">
+        <div class="charla-fotos">
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="imagenes/charla-uai-560.webp 560w, imagenes/charla-uai.webp 900w" sizes="(max-width: 880px) 60vw, 330px">
+              <img src="imagenes/charla-uai.jpg" alt="Benjamín Campos disertando en la Jornada del Día del Psicólogo de la UAI" width="900" height="675" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="imagenes/charla-uai-panel-560.webp 560w, imagenes/charla-uai-panel.webp 900w" sizes="(max-width: 880px) 40vw, 220px">
+              <img src="imagenes/charla-uai-panel.jpg" alt="Disertantes de la jornada, al finalizar la charla en la UAI" width="900" height="675" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+        </div>
+        <div>
+          <div class="pub-type">Charla</div>
+          <h3 class="pub-title">Jornada del Día del Psicólogo</h3>
+          <div class="pub-meta">Universidad Abierta Interamericana (UAI) · 15 de octubre de 2026 · Junto a Carolina Adad (Segunda Tópica)</div>
+          <p style="font-size:0.95rem;">Una charla sobre el psicoanálisis y las dificultades que aparecen en los comienzos de la práctica clínica.</p>
+        </div>
+      </article>
 
       <div class="pub-list">
         <div class="pub-item">
@@ -1402,7 +1624,7 @@
         </div>
         <div class="contacto-cta">
           <p>Si estás pensando en empezar un proceso, escribime y coordinamos. No hay compromiso en la primera consulta.</p>
-          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary">Pedir primera entrevista por WhatsApp</a>
+          <a href="https://wa.me/5492994286870?text=Hola%20Benjam%C3%ADn%2C%20quisiera%20consultar%20por%20disponibilidad%20de%20turnos" target="_blank" class="btn-primary"><svg class="i-wa" aria-hidden="true"><use href="#i-wa"/></svg>Pedir primera entrevista por WhatsApp</a>
           <!-- Mundopsicólogos oculto (perfil dado de baja). Para reactivarlo, quitar este comentario.
           <a href="https://www.mundopsicologos.com.ar/procard/benjamin-saul-campos-acencio/social" target="_blank" class="btn-outline">Ver perfil en Mundopsicólogos</a>
           -->
